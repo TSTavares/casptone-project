@@ -1,9 +1,15 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const expenseController = require('../controllers/expenseController');
+const Controllers = require("../controllers");
 
 // Routes
-router.post('/expenses', expenseController.createExpense);
-router.get('/expenses', expenseController.getExpenses);
+
+router.get('/', (req, res) => {
+    Controllers.expenseController.getExpenses(res)
+});
+
+router.post('/', (req, res) => {
+    Controllers.expenseController.createExpense(req, res)
+  });
 
 module.exports = router;
