@@ -4,96 +4,72 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import { Card, Button, Table, Tag } from 'antd';
 import { useState } from 'react';
+import useSWR from 'swr';
+import Link from 'next/link';
 
-export default function Home() {
+
+
+export default function LoginPage() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleLogin = () => {
+    
+    console.log('Username:', username);
+    console.log('Password:', password);
+    
+    setUsername('');
+    setPassword('');
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    
+    <main>
+      <div>
+        <h1 className={styles.titleLoginPage}>Money Minder</h1>
+
+        <div className={styles.navigation}>
+          <Link href="/">
+            <Button>Home</Button>
+          </Link>
+          <Link href="categories">
+            <Button>Categories</Button>
+          </Link>
+          <Link href="/profile">
+            <Button>Profile</Button>
+          </Link>
+          <Link href="/">
+            <Button>Login</Button>
+          </Link>
         </div>
-      </div>
+        </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+        <div className={styles.container}>
+          <Card title="User Login" className={styles.card}>
+            <div className={styles.usernameLogin}>
+              <label>Username:</label>
+              <input type="text" value={username} onChange={handleUsernameChange} />
+            </div>
+            <div className={styles.passwordLogin}>
+              <label>Password:</label>
+              <input type="password" value={password} onChange={handlePasswordChange} />
+            </div>
+            <button className={styles.loginButton}onClick={handleLogin}>Login</button>
+          </Card>
+        </div>
+      
     </main>
-  )
-}
+  );
+};
+
+
+
+
