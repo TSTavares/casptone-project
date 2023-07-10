@@ -1,5 +1,6 @@
 
 Frontend install:
+
 npm init
 1. `npx create-next-app@latest`
 2.  When asked..
@@ -16,7 +17,7 @@ npm init
 5. `npm run dev`
 
 npm install antd
-do I need SWR?Is it just for APIS?
+do I need SWR?Is it just for APIS?npm install swr
 
 Backend install:
 npm init
@@ -28,6 +29,7 @@ npm install axios
 npm install cors --save
 add in package.json "scripts": {"start": "nodemon"}
 change "main": "index.js", to "dbConnect.js"
+
 
 
 
