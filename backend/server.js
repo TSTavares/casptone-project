@@ -8,15 +8,14 @@
 // add in package.json "scripts": {"start": "nodemon"}
 //change "main": "index.js", to "dbConnect.js"
 
-const cors = require('cors');
-const express = require('express');
+const cors = require("cors");
+const express = require("express");
 const app = express();
-require('dotenv').config();
+require("dotenv").config();
 
 const dbConnect = require('./dbConnect');
 const userRoutes = require('./routes/userRoutes');
 const expenseRoutes = require('./routes/expenseRoutes');
-const incomeRoutes = require('./routes/incomeRoutes');
 
 
 // parse requests of content-type - application/json
@@ -28,13 +27,12 @@ app.get('/', (req, res) => {
 });
 
 // Routes
-app.use('/', userRoutes);
-app.use('/', expenseRoutes);
-app.use('/', incomeRoutes);
-
+app.use('/user', userRoutes);
+app.use('/expense', expenseRoutes);
+ 
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
