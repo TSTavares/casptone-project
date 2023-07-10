@@ -5,7 +5,7 @@
 //npm install mongoose --save
 // npm install axios
 // npm install cors --save
-// add in package.json "scripts": {"start": "nodemon"}
+// add in package.json "scripts": {"start": "nodemon server.js"}
 //change "main": "index.js", to "dbConnect.js"
 
 const cors = require("cors");
