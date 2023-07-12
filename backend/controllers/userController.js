@@ -1,5 +1,15 @@
 const User = require("../models/user");
 
+
+const getUser = async (req, res) => {
+  try {
+    const user = await User.find();
+    res.json({ user });
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred', error });
+  }
+};
+
 // create a user
 const createUser = async (req, res) => {
   try {
@@ -50,6 +60,7 @@ const deleteUser = async (req, res) => {
 };
 
 module.exports = {
+  getUser,
   createUser,
   updateUser,
   deleteUser
