@@ -4,6 +4,10 @@ const Controllers = require("../controllers");
 
 //create a user
 
+router.get('/', (req, res) => {
+    Controllers.userController.getUser(req, res)
+});
+
 router.post('/', (req, res) => {
     Controllers.userController.createUser(req, res)
 });

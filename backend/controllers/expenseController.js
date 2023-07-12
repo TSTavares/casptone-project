@@ -12,16 +12,56 @@ const createExpense = async (req, res) => {
   }
 };
 
-const getExpenses = async (req, res) => {
+const getExpense = async (req, res) => {
   try {
-    const expenses = await Expense.find();
-    res.json({ expenses });
+    const expense = await Expense.find();
+    res.json({ expense });
   } catch (error) {
     res.status(500).json({ message: 'An error occurred', error });
   }
 };
 
+const updateExpense = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { category, amount, description } = req.body;
+
+    const expense = await Expense.findByIdAndUpdate(
+      id,
+      { category, amount, description },
+      { new: true }
+    );
+
+    if (!expense) {
+      return res.status(404).json({ message: 'Expense not found' });
+    }
+
+    res.json({ message: 'Expense updated successfully', expense });
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred', error });
+  }
+};
+
+const deleteExpense = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const expense = await Expense.findByIdAndDelete(id);
+
+    if (!expense) {
+      return res.status(404).json({ message: 'Expense not found' });
+    }
+
+    res.json({ message: 'Expense deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred', error });
+  }
+};
+
+
 module.exports = {
   createExpense,
-  getExpenses,
+  getExpense,
+  updateExpense,
+  deleteExpense
 };
