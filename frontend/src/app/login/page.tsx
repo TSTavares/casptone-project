@@ -35,6 +35,7 @@ export default function LoginPage() {
     <main>
       <div>
         <h1 className={styles.titleLoginPage}>Money Minder</h1>
+        <p>Income & Expense Tracker</p>
 
         <div className={styles.navigation}>
           <Link href="/">
