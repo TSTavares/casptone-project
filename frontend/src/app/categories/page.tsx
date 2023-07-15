@@ -1,7 +1,7 @@
 "use client"
 
 import Image from 'next/image'
-import styles from './page.module.css'
+import styles from '../page.module.css'
 import { Card, Button, Table, Tag } from 'antd';
 import { useState } from 'react';
 import useSWR from 'swr';
@@ -31,7 +31,7 @@ export default function CategoriesPage() {
         <Link href="/profile">
             <Button>Profile</Button>
         </Link>
-        <Link href="/page">
+        <Link href="/login">
             <Button>Login</Button>
         </Link>
         </div>
