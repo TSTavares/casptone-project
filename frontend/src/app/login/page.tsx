@@ -39,8 +39,8 @@ export default function LoginPage() {
             <Link href="/categories">
               <Button>Categories</Button>
             </Link>
-            <Link href="/profile">
-              <Button>Profile</Button>
+            <Link href="/dashboard">
+              <Button>Dashboard</Button>
             </Link>
             <Link href="/login">
               <Button>Login</Button>

@@ -13,7 +13,12 @@
   margin-right: 20px;
   margin-top: 10px;
   padding: auto;
+  
  
+}
+
+.navigationButton{
+  border: 3px solid rgb(238, 238, 119)
 }
 
 .container {
@@ -36,6 +41,7 @@
   margin: 20px;
   font-weight: bolder;
   border-radius: 5px;
+  border: 3px solid rgb(238, 238, 119);
    
 }
 
@@ -52,6 +58,32 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.titleCategories{
+  text-align: center;
+
+}
+
+.filterContainer{
+  text-align: center;
+}
+
+.categoriesContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  margin-top: 1rem;
+  
+}
+
+.categoriesCardImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 3px solid rgb(238, 238, 119);
+  margin-left: 170px;
+  
 }
 
 
