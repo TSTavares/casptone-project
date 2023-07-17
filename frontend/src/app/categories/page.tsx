@@ -57,25 +57,36 @@ export default function CategoriesPage() {
   const isTagSelected = (tag) => selectedTags.includes(tag);
 
   return (
+  
     <div>
-      <div className={styles.navigation}>
-        
-          <Link href="/">
-            <Button className={styles.navigationButton}>Home</Button>
-          </Link>
-          <Link href="categories">
-            <Button className={styles.navigationButton}>Categories</Button>
-          </Link>
-          <Link href="/dashboard">
-            <Button className={styles.navigationButton}>Dashboard</Button>
-          </Link>
-          <Link href="/login">
-            <Button className={styles.navigationButton}>Login</Button>
-          </Link>
-        
+        <div>
+          <Image
+            className={styles.logoCategoriesPage}
+            loader={({ src }) => src}
+            src="/image/logomoneyminder.jpg"
+            alt="Logo Money Minder"
+            width={80}
+            height={80}
+            />
+        </div>
+        <div className={styles.navigation}>
+          
+            <Link href="/">
+              <Button className={styles.navigationButton}>Home</Button>
+            </Link>
+            <Link href="categories">
+              <Button className={styles.navigationButton}>Categories</Button>
+            </Link>
+            <Link href="/dashboard">
+              <Button className={styles.navigationButton}>Dashboard</Button>
+            </Link>
+            <Link href="/login">
+              <Button className={styles.navigationButton}>Login</Button>
+            </Link>
+     
       </div>
-
       <h1 className={styles.titleCategories}>Categories</h1>
+      
       <div className={styles.filterContainer}>
         <Tag.CheckableTag
           checked={selectedTags.length === 0}
@@ -153,6 +164,7 @@ export default function CategoriesPage() {
         </Form>
       </Modal>
     </div>
+  
   );
 }
 

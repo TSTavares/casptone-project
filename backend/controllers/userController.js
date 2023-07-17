@@ -1,13 +1,20 @@
 const User = require("../models/user");
 
 
-const getUser = async (req, res) => {
+
+const checkEmailAndPassword = async (req, res) => {
+  // get email & password from query params
+  const {email, password} = req.query
+
+  // query database for email & password match
   try {
-    const user = await User.find();
-    res.json({ user });
+    const response = await User.find({email:email,password:password});
+
+    res.json({ userName: response[0].name });
   } catch (error) {
-    res.status(500).json({ message: 'An error occurred', error });
+    res.status(500).json({ userName: false });
   }
+
 };
 
 // create a user
@@ -60,7 +67,7 @@ const deleteUser = async (req, res) => {
 };
 
 module.exports = {
-  getUser,
+  checkEmailAndPassword,
   createUser,
   updateUser,
   deleteUser

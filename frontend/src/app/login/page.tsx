@@ -4,97 +4,125 @@ import Image from 'next/image'
 import styles from '../page.module.css'
 import { Card, Button, Table, Tag } from 'antd';
 import { useState } from 'react';
-import useSWR from 'swr';
+import UseSWR from 'swr';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 
-
+const fetcher = (url: any) => fetch(url).then(res => res.json())
 
 export default function LoginPage() {
-  const [username, setUsername] = useState('');
+  // For the login form 
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+  // To tell SWR when to fetch
+  const [shouldFetch, setShouldFetch] = useState(false)
+
+  // For router (Once logged in)
+  const router = useRouter()
+
+  const handleEmailChange = (event: any) => {
+    setEmail(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = (event: any) => {
     setPassword(event.target.value);
   };
 
   const handleLogin = () => {
-    
-    console.log('Username:', username);
-    console.log('Password:', password);
-    
-    setUsername('');
-    setPassword('');
+    // Set state to true to execute fetch function
+    setShouldFetch(true)
+
   };
+
+  // swr / API call backend to check email & password
+  const { data: username, error, isLoading } = UseSWR(shouldFetch ? `http://localhost:3001/user/check-email-and-password?email=${email}&password=${password}` : null, fetcher)
+ 
+  if (error) {
+    // (If error) Then Alert user wrong login details
+    console.log(error)
+  }
+
+  if (username !== undefined) {
+    // (If user doesn't exist)
+    if (!username.userName) {
+      alert("Email or Password is wrong!")
+    } else {
+      // (If username is ok) 
+      // Then Login User - update userName in context
+      console.log(username.userName)
+
+      //(Navigate to categories)
+      router.push('/categories')
+    }
+  }
 
   return (
     <main>
-        <div className={styles.navigation}>
-            <Link href="/">
-              <Button>Home</Button>
-            </Link>
-            <Link href="/categories">
-              <Button>Categories</Button>
-            </Link>
-            <Link href="/dashboard">
-              <Button>Dashboard</Button>
-            </Link>
-            <Link href="/login">
-              <Button>Login</Button>
-            </Link>
+      <div className={styles.navigation}>
+        <Link href="/">
+          <Button>Home</Button>
+        </Link>
+        <Link href="/categories">
+          <Button>Categories</Button>
+        </Link>
+        <Link href="/dashboard">
+          <Button>Dashboard</Button>
+        </Link>
+        <Link href="/login">
+          <Button>Login</Button>
+        </Link>
+      </div>
+
+
+      <div className={styles.container}>
+        <div className={styles.leftContent}>
+          <div className={styles.logoContainer}>
+            <Image
+              className={styles.LoginImage}
+              loader={({ src }) => src}
+              src="/image2/Image14 - money.png"
+              alt="Photo Money Minder"
+              width={450}
+              height={450}
+            />
+          </div>
         </div>
 
-    
-        <div className={styles.container}>
-            <div className={styles.leftContent}>
-                <div className={styles.logoContainer}>
-                <Image
-                className={styles.LoginImage}
+        <div className={styles.rightContent}>
+          <div className={styles.loginContainer}>
+            <h1 className={styles.titleLoginPage}>Money Minder</h1>
+            <p>Income &amp; Expense Tracker</p>
+
+
+            <Card title="User Login" className={styles.card}>
+              <Image
+                className={styles.logoLoginPage}
                 loader={({ src }) => src}
-                src="/image2/Image14 - money.png"
-                alt="Photo Money Minder"
-                width={450}
-                height={450}
-                />
-                </div>
-            </div>
+                src="/image/logomoneyminder.jpg"
+                alt="Logo Money Minder"
+                width={50}
+                height={50}
 
-            <div className={styles.rightContent}>
-                <div className={styles.loginContainer}>
-                    <h1 className={styles.titleLoginPage}>Money Minder</h1>
-                    <p>Income &amp; Expense Tracker</p>
-                    
+              />
+              <div className={styles.usernameLogin}>
+                <label>Email......:</label>
+                <input type="text" value={email} onChange={handleEmailChange} />
+              </div>
+              <div className={styles.passwordLogin}>
+                <label>Password:</label>
+                <input type="password" value={password} onChange={handlePasswordChange} />
+              </div>
+              <button className={styles.loginButton} onClick={handleLogin}>
+                Login
+              </button>
+            </Card>
 
-                    <Card title="User Login" className={styles.card}>
-                        <Image
-                        className={styles.logoImageLoginPage}
-                        loader={({ src }) => src}
-                        src="/image/logomoneyminder.jpg"
-                        alt="Logo Money Minder"
-                        width={50}
-                        height={50}
-                        />
-                    <div className={styles.usernameLogin}>
-                        <label>Username:</label>
-                        <input type="text" value={username} onChange={handleUsernameChange} />
-                    </div>
-                    <div className={styles.passwordLogin}>
-                        <label>Password:</label>
-                        <input type="password" value={password} onChange={handlePasswordChange} />
-                    </div>
-                    <button className={styles.loginButton} onClick={handleLogin}>
-                        Login
-                    </button>
-                    </Card>
-                    
-                </div>
-            
-            </div> 
-            
+          </div>
+
         </div>
+
+      </div>
     </main>
   );
 }

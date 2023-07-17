@@ -13,7 +13,11 @@ const expenseSchema = new Schema({
   description: {
     type: String,
     required: true
-  }
+  },
+  userEmail: {
+    type: String,
+    required: true
+  },
 });
 
 const Expense = mongoose.model("Expense", expenseSchema);

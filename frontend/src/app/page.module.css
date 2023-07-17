@@ -1,3 +1,18 @@
+.navigation {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+  margin-top: 10px;
+  padding: auto;
+  
+}
+
+.navigationButton{
+  border: 3px solid rgb(238, 238, 119)
+}
+
+/*Home Page*/
+
 .imageContainer {
   position: absolute;
   top: 0;
@@ -7,19 +22,8 @@
   z-index: -1;
 }
 
-.navigation {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 20px;
-  margin-top: 10px;
-  padding: auto;
-  
- 
-}
 
-.navigationButton{
-  border: 3px solid rgb(238, 238, 119)
-}
+/*Login Page*/
 
 .container {
   display: flex;
@@ -35,6 +39,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.logoLoginPage{
+  border-radius: 5px;
+  
+}
+
 .loginButton {
   width: 60px;
   height: 30px;
@@ -44,6 +53,8 @@
   border: 3px solid rgb(238, 238, 119);
    
 }
+
+/*Categories Page*/
 
 .leftContent{
   flex: 1;
@@ -84,6 +95,13 @@
   border: 3px solid rgb(238, 238, 119);
   margin-left: 170px;
   
+}
+
+.logoCategoriesPage{
+  border-radius: 5px;
+  display: block;
+  position: relative;
+
 }
 
 
