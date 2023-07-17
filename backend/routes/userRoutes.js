@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const Controllers = require("../controllers");
 
-//create a user
 
-router.get('/', (req, res) => {
-    Controllers.userController.getUser(req, res)
+// For login page - checks email and password 
+router.get('/check-email-and-password', (req, res) => {
+    Controllers.userController.checkEmailAndPassword(req, res)
 });
 
 router.post('/', (req, res) => {

@@ -3,8 +3,8 @@ const Expense = require('../models/expense');
 
 const createExpense = async (req, res) => {
   try {
-    const { category, amount, description } = req.body;
-    const expense = new Expense({ category, amount, description });
+    const { category, amount, description, userEmail } = req.body;
+    const expense = new Expense({ category, amount, description, userEmail });
     await expense.save();
     res.status(201).json({ message: 'Expense created successfully', expense });
   } catch (error) {
