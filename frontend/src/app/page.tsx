@@ -3,18 +3,36 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import { Card, Button, Table, Tag } from 'antd';
-import { useState } from 'react';
 import useSWR from 'swr';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'
+import { useContext, useState } from "react";
+import { MyContext } from "../context/contextProvider";
+
+const fetcher = (url: any) => fetch(url).then(res => res.json())
 
 
 export default function HomePage() {
+
+  const {userName,updateUserName, loggedIn, updateLoggedIn} = useContext(MyContext);
+
+  const { data: transactionData, error, isLoading } = useSWR(`http://localhost:3001/transaction//transaction-by-user?userName=${userName}`, fetcher)
  
 
   return (
     
-    <main>
       <div>
+       
+
+      {loggedIn?
+       <div>
+        <p>Hello {userName}</p>
+        <button onClick={()=>updateLoggedIn(false)}>Logout</button>
+        </div>
+        :
+        <p>Please login</p>
+        }
+        
 
         <div className={styles.imageContainer}>
           <Image className={styles.logoHomePage}
@@ -26,23 +44,25 @@ export default function HomePage() {
           />
           </div>
 
-        <div className={styles.navigation}>
-          <Link href="/">
-            <Button>Home</Button>
-          </Link>
-          <Link href="/categories">
-            <Button>Categories</Button>
-          </Link>
-          <Link href="/dashboard">
-            <Button>Dashboard</Button>
-          </Link>
-          <Link href="/login">
-            <Button>Login</Button>
-          </Link>
+          <div className={styles.navigation}>
+          
+            <Link href="/">
+              <Button className={styles.navigationButton}>Home</Button>
+            </Link>
+            <Link href="categories">
+              <Button className={styles.navigationButton}>Categories</Button>
+            </Link>
+            <Link href="/dashboard">
+              <Button className={styles.navigationButton}>Dashboard</Button>
+            </Link>
+            <Link href="/login">
+              <Button className={styles.navigationButton}>Login</Button>
+            </Link>
+   
         </div>
       
       </div>
-    </main>
+    
   )
 };
 
