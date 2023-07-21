@@ -3,14 +3,18 @@
 import Image from 'next/image'
 import styles from '../page.module.css'
 import { Card, Button, Table, Tag } from 'antd';
-import { useState } from 'react';
 import UseSWR from 'swr';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
+import { useContext, useState } from "react";
+import { MyContext } from "../../context/contextProvider";
 
 const fetcher = (url: any) => fetch(url).then(res => res.json())
 
 export default function LoginPage() {
+
+  const {userName,updateUserName, loggedIn, updateLoggedIn} = useContext(MyContext);
+
   // For the login form 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,8 +54,9 @@ export default function LoginPage() {
     } else {
       // (If username is ok) 
       // Then Login User - update userName in context
-      console.log(username.userName)
-
+      updateUserName(username.userName)
+      updateLoggedIn(true)
+      
       //(Navigate to categories)
       router.push('/categories')
     }
@@ -60,19 +65,21 @@ export default function LoginPage() {
   return (
     <main>
       <div className={styles.navigation}>
-        <Link href="/">
-          <Button>Home</Button>
-        </Link>
-        <Link href="/categories">
-          <Button>Categories</Button>
-        </Link>
-        <Link href="/dashboard">
-          <Button>Dashboard</Button>
-        </Link>
-        <Link href="/login">
-          <Button>Login</Button>
-        </Link>
-      </div>
+          
+          <Link href="/">
+            <Button className={styles.navigationButton}>Home</Button>
+          </Link>
+          <Link href="categories">
+            <Button className={styles.navigationButton}>Categories</Button>
+          </Link>
+          <Link href="/dashboard">
+            <Button className={styles.navigationButton}>Dashboard</Button>
+          </Link>
+          <Link href="/login">
+            <Button className={styles.navigationButton}>Login</Button>
+          </Link>
+   
+    </div>
 
 
       <div className={styles.container}>

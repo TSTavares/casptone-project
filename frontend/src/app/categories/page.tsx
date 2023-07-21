@@ -3,18 +3,26 @@
 import Image from 'next/image'
 import styles from '../page.module.css'
 import { Card, Button, Modal, Form, Input, Tag } from 'antd';
-import { useState } from 'react';
 import useSWR from 'swr';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'
+import { useContext, useState } from "react";
+import { MyContext } from "../../context/contextProvider";
 
-
+const fetcher = (url: any) => fetch(url).then(res => res.json())
 
 const { Meta } = Card;
 
 export default function CategoriesPage() {
+  // This is for the context 
+  const {userName,updateUserName, loggedIn, updateLoggedIn} = useContext(MyContext);
+
+  const { data: transactionData, error, isLoading } = useSWR(`http://localhost:3001/transaction//transaction-by-user?userName=${userName}`, fetcher)
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
   const [selectedTags, setSelectedTags] = useState([]);
+ 
 
   const cardsData = [
     { title: 'Rent or Mortgage', image: '/image3/image1-rent.jpg' },
@@ -59,6 +67,14 @@ export default function CategoriesPage() {
   return (
   
     <div>
+       {loggedIn?
+       <div>
+        <p>Hello {userName}</p>
+        <button onClick={()=>updateLoggedIn(false)}>Logout</button>
+        </div>
+        :
+        <p>Please login</p>
+        }
         <div>
           <Image
             className={styles.logoCategoriesPage}
@@ -86,6 +102,7 @@ export default function CategoriesPage() {
      
       </div>
       <h1 className={styles.titleCategories}>Categories</h1>
+      
       
       <div className={styles.filterContainer}>
         <Tag.CheckableTag

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const expenseSchema = new Schema({
+const transactionSchema = new Schema({
   category: {
     type: String,
     required: true
@@ -14,12 +14,13 @@ const expenseSchema = new Schema({
     type: String,
     required: true
   },
-  userEmail: {
+  userName: {
     type: String,
     required: true
   },
+ 
 });
 
-const Expense = mongoose.model("Expense", expenseSchema);
+const Transaction = mongoose.model("Transaction", transactionSchema);
 
-module.exports = Expense;
+module.exports = Transaction;

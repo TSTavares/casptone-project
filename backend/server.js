@@ -15,7 +15,7 @@ require("dotenv").config();
 
 const dbConnect = require('./dbConnect');
 const userRoutes = require('./routes/userRoutes');
-const expenseRoutes = require('./routes/expenseRoutes');
+const transactionRoutes = require('./routes/transactionRoutes');
 
 
 // parse requests of content-type - application/json
@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/user', userRoutes);
-app.use('/expense', expenseRoutes);
+app.use('/transaction', transactionRoutes);
  
 
 // set port, listen for requests
