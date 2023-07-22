@@ -104,6 +104,18 @@
 
 }
 
+/*Dashboard Page*/
+
+
+
+.tableColor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
 
 
 

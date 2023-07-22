@@ -2,7 +2,8 @@
 
 import Image from 'next/image'
 import styles from '../page.module.css'
-import { Card, Button, Modal, Form, Input, Tag } from 'antd';
+import { Card, Button, Modal, Form, Input, Tag, Row, Col } from 'antd';
+import { Progress } from 'antd';
 import useSWR from 'swr';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
