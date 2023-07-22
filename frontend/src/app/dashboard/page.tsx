@@ -14,14 +14,14 @@ import Head from 'next/head'
 const fetcher = (url: any) => fetch(url).then(res => res.json())
 
 const expensesData = [
-  { category: 'Rent or Mortgage', amount: '$300', color: '#ff6b6b' },
-  { category: 'Household Bills', amount: '$100', color: '#ffc078' },
-  { category: 'Groceries', amount: '$200', color: '#8fd3f4'},
-  { category: 'Transport', amount: '$50', color: '#dcb0ed'},
-  { category: 'Medical Healthcare', amount: '$50', color: '#80cc88'},
-  { category: 'Education', amount: '$100', color: '#6fc3df'},
-  { category: 'Personal Care', amount: '$100', color: '#ffd699'},
-  { category: 'Entertainment', amount: '$100', color: '#ffb3ba'},
+  { category: 'Rent or Mortgage', amount: 0, color: '#ff6b6b', note: ""},
+  { category: 'Household Bills', amount: 0, color: '#ffc078', note: ""},
+  { category: 'Groceries', amount: 0, color: '#8fd3f4', note: ""},
+  { category: 'Transport', amount: 0, color: '#dcb0ed', note: ""},
+  { category: 'Medical Healthcare', amount: 0, color: '#80cc88', note: ""},
+  { category: 'Education', amount: 0, color: '#6fc3df', note: ""},
+  { category: 'Personal Care', amount: 0, color: '#ffd699', note: ""},
+  { category: 'Entertainment', amount: 0, color: '#ffb3ba', note: ""},
 
 ];
   
@@ -29,12 +29,24 @@ const expensesData = [
 
     const {userName,updateUserName, loggedIn, updateLoggedIn} = useContext(MyContext);
     
-    
-
     const { data: transactionData, error, isLoading } = useSWR(`http://localhost:3001/transaction//transaction-by-user?userName=${userName}`, fetcher)
 
-   
-
+    if(!isLoading){
+      console.log(transactionData.transactions, typeof transactionData.transactions)
+      transactionData.transactions.forEach((transaction:any)=>{
+        console.log(transaction.amount)
+        expensesData.forEach((currentExpenseCategory)=>{
+          // check for same category
+          if(currentExpenseCategory.category===transaction.category){
+            // add to amount
+            currentExpenseCategory.amount += transaction.amount;
+            // add to note
+            currentExpenseCategory.note===transaction.note
+          
+          }
+        })
+      })
+    }
 
     const columns = [
       {
@@ -53,6 +65,12 @@ const expensesData = [
         dataIndex: 'amount',
         key: 'amount',
       },
+      {
+        title: 'Note',
+        dataIndex: 'note',
+        key: 'note',
+      },
+      
     ];
 
     const tableData = expensesData.map((expense) => ({
@@ -102,13 +120,7 @@ const expensesData = [
             </Link>
      
       </div>
-  
-          
-        
-        {/* Demo to show backend data */}
-        {!isLoading&&transactionData.transactions.map((transaction:any)=>{
-          return(<div key={transaction._id}>{transaction.description}</div>)
-        })}
+
             
           <Table dataSource={tableData} columns={columns} pagination={false} />
 

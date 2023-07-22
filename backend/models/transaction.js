@@ -10,7 +10,7 @@ const transactionSchema = new Schema({
     type: Number,
     required: true
   },
-  description: {
+  note: {
     type: String,
     required: true
   },
