@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import styles from '../page.module.css'
-import { Card, Button, Modal, Form, Input, Tag, Row, Col } from 'antd';
+import { Card, Button, Modal, Table, Form, Input, Tag, Row, Col } from 'antd';
 import { Progress } from 'antd';
 import useSWR from 'swr';
 import Link from 'next/link';
@@ -23,6 +23,7 @@ export default function CategoriesPage() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
   const [selectedTags, setSelectedTags] = useState([]);
+  const [clickedCategory, setClickedCategory] = useState(null);
  
 
   const cardsData = [
@@ -38,7 +39,8 @@ export default function CategoriesPage() {
     { title: 'Savings', image: '/image3/image9-saving.jpg' },
   ];
 
-  const handleCardClick = () => {
+  const handleCardClick = (categoryTitle: any) => {
+    setClickedCategory(categoryTitle);
     setIsModalVisible(true);
   };
 
@@ -48,8 +50,31 @@ export default function CategoriesPage() {
 
   const handleModalOk = () => {
     form.validateFields().then((values) => {
-      console.log('Value:', values.value);
-      console.log('Note:', values.note);
+
+      // Send transaction to the backend > database 
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      
+      var raw = JSON.stringify({
+        "category": clickedCategory,
+        "amount": values.value,
+        "note": values.note,
+        "userName": userName
+      });
+      
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+      
+      fetch("http://localhost:3001/transaction", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+
+      // after we send the transaction to the backend
       form.resetFields();
       setIsModalVisible(false);
     });
@@ -141,7 +166,7 @@ export default function CategoriesPage() {
                 
               />
             }
-            onClick={handleCardClick}
+            onClick={() => handleCardClick(card.title)} 
           >
             <Meta title={card.title} />
           </Card>
@@ -149,7 +174,7 @@ export default function CategoriesPage() {
       </div>
 
       <Modal
-        title="Category"
+        title={`Category: ${clickedCategory}`}
         visible={isModalVisible}
         onCancel={handleModalCancel}
         onOk={handleModalOk}

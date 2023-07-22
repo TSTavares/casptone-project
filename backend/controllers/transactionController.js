@@ -23,8 +23,8 @@ const getTransactionsByUser = async (req, res) => {
 
 const createTransaction = async (req, res) => {
   try {
-    const { category, amount, description, userEmail  } = req.body;
-    const transaction = new Transaction({ category, amount, description, userEmail });
+    const { category, amount, note, userName  } = req.body;
+    const transaction = new Transaction({ category, amount, note, userName });
     await transaction.save();
     res.status(201).json({ message: 'Transaction created successfully', transaction });
   } catch (error) {
@@ -36,11 +36,11 @@ const createTransaction = async (req, res) => {
 const updateTransaction = async (req, res) => {
   try {
     const { id } = req.params;
-    const { category, amount, description } = req.body;
+    const { category, amount, note } = req.body;
 
     const transaction = await Transaction.findByIdAndUpdate(
       id,
-      { category, amount, description },
+      { category, amount, note },
       { new: true }
     );
 
