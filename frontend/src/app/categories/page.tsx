@@ -93,15 +93,11 @@ export default function CategoriesPage() {
   return (
   
     <div>
-       {loggedIn?
-       <div>
-        <p>Hello {userName}</p>
-        <button onClick={()=>updateLoggedIn(false)}>Logout</button>
-        </div>
-        :
-        <p>Please login</p>
-        }
-        <div>
+
+      <div className={styles.head}>
+
+        <div className={styles.userInfo}>
+
           <Image
             className={styles.logoCategoriesPage}
             loader={({ src }) => src}
@@ -109,25 +105,42 @@ export default function CategoriesPage() {
             alt="Logo Money Minder"
             width={80}
             height={80}
-            />
+          />
+
+          {loggedIn ? (
+
+            <div className={styles.userName}>
+              <p>Hello {userName}</p>
+              <button onClick={() => updateLoggedIn(false)}>Logout</button>
+            </div>
+
+          ) : (
+
+            <p className={styles.loginSuggestion}>Please login</p>
+          )}
+
         </div>
+
         <div className={styles.navigation}>
-          
-            <Link href="/">
-              <Button className={styles.navigationButton}>Home</Button>
-            </Link>
-            <Link href="categories">
-              <Button className={styles.navigationButton}>Categories</Button>
-            </Link>
-            <Link href="/dashboard">
-              <Button className={styles.navigationButton}>Dashboard</Button>
-            </Link>
-            <Link href="/login">
-              <Button className={styles.navigationButton}>Login</Button>
-            </Link>
-     
+         
+          <Link href="/">
+            <Button className={styles.navigationButton}>Home</Button>
+          </Link>
+          <Link href="categories">
+            <Button className={styles.navigationButton}>Categories</Button>
+          </Link>
+          <Link href="/dashboard">
+            <Button className={styles.navigationButton}>Dashboard</Button>
+          </Link>
+          <Link href="/login">
+            <Button className={styles.navigationButton}>Login</Button>
+          </Link>
+        </div>
       </div>
-      <h1 className={styles.titleCategories}>Categories</h1>
+
+
+      <div className={styles.body}>
+        <h1 className={styles.titleCategories}>Categories</h1>
       
       
       <div className={styles.filterContainer}>
@@ -206,6 +219,7 @@ export default function CategoriesPage() {
           </Form.Item>
         </Form>
       </Modal>
+    </div>
     </div>
   
   );

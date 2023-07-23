@@ -63,9 +63,38 @@ export default function LoginPage() {
   }
 
   return (
-    <main>
-      <div className={styles.navigation}>
-          
+
+    <div>
+
+      <div className={styles.head}>
+
+        <div className={styles.userInfo}>
+
+          <Image
+            className={styles.logoCategoriesPage}
+            loader={({ src }) => src}
+            src="/image/logomoneyminder.jpg"
+            alt="Logo Money Minder"
+            width={80}
+            height={80}
+          />
+
+          {loggedIn ? (
+
+            <div className={styles.userName}>
+              <p>Hello {userName}</p>
+              <button onClick={() => updateLoggedIn(false)}>Logout</button>
+            </div>
+
+          ) : (
+
+            <p className={styles.loginSuggestion}>Please login</p>
+          )}
+
+        </div>
+
+        <div className={styles.navigation}>
+         
           <Link href="/">
             <Button className={styles.navigationButton}>Home</Button>
           </Link>
@@ -78,13 +107,16 @@ export default function LoginPage() {
           <Link href="/login">
             <Button className={styles.navigationButton}>Login</Button>
           </Link>
+        </div>
+      </div>
    
-    </div>
 
-
+    <div>
       <div className={styles.container}>
         <div className={styles.leftContent}>
           <div className={styles.logoContainer}>
+            <h1 className={styles.titleLoginPage}>Money Minder</h1>
+            <p className={styles.secondTitle}>Income &amp; Expense Tracker</p>
             <Image
               className={styles.LoginImage}
               loader={({ src }) => src}
@@ -98,8 +130,8 @@ export default function LoginPage() {
 
         <div className={styles.rightContent}>
           <div className={styles.loginContainer}>
-            <h1 className={styles.titleLoginPage}>Money Minder</h1>
-            <p>Income &amp; Expense Tracker</p>
+            
+            
 
 
             <Card title="User Login" className={styles.card}>
@@ -113,7 +145,7 @@ export default function LoginPage() {
 
               />
               <div className={styles.usernameLogin}>
-                <label>Email......:</label>
+                <label>Email:<br></br></label>
                 <input type="text" value={email} onChange={handleEmailChange} />
               </div>
               <div className={styles.passwordLogin}>
@@ -130,6 +162,7 @@ export default function LoginPage() {
         </div>
 
       </div>
-    </main>
+    </div>
+    </div>
   );
 }
