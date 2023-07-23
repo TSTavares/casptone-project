@@ -22,7 +22,6 @@ const expensesData = [
   { category: 'Education', amount: 0, color: '#6fc3df', note: ""},
   { category: 'Personal Care', amount: 0, color: '#ffd699', note: ""},
   { category: 'Entertainment', amount: 0, color: '#ffb3ba', note: ""},
-
 ];
   
   export default function DashboardPage() {
@@ -31,8 +30,15 @@ const expensesData = [
     
     const { data: transactionData, error, isLoading } = useSWR(`http://localhost:3001/transaction//transaction-by-user?userName=${userName}`, fetcher)
 
-    if(!isLoading){
+    if (!isLoading) {
       console.log(transactionData.transactions, typeof transactionData.transactions)
+
+      // reset summary
+      expensesData.forEach(category => {
+        category.amount = 0
+        category.note = '';
+      })
+
       transactionData.transactions.forEach((transaction:any)=>{
         console.log(transaction.amount)
         expensesData.forEach((currentExpenseCategory)=>{
@@ -41,8 +47,10 @@ const expensesData = [
             // add to amount
             currentExpenseCategory.amount += transaction.amount;
             // add to note
-            currentExpenseCategory.note===transaction.note
-          
+            if (currentExpenseCategory.note && transaction.note) {
+              currentExpenseCategory.note += '; '
+            }
+            currentExpenseCategory.note += transaction.note 
           }
         })
       })

@@ -8,7 +8,8 @@
 }
 
 .navigationButton{
-  border: 3px solid rgb(238, 238, 119)
+  border: 3px solid rgb(238, 238, 119);
+  
 }
 
 /*Home Page*/
@@ -24,6 +25,19 @@
 
 
 /*Login Page*/
+
+
+.titleLoginPage {
+  font-size: 40px;
+  font-family: calibri;
+  margin-left: 40px;
+}
+.secondTitle{
+  font-size: 24px;
+  font-family: calibri;
+  margin-left: 20px;
+
+}
 
 .container {
   display: flex;
@@ -44,6 +58,16 @@
   
 }
 
+.usernameLogin,
+.passwordLogin {
+  margin-bottom: 20px;
+}
+
+.usernameLogin input,
+.passwordLogin input {
+  width: 100%;
+}
+
 .loginButton {
   width: 60px;
   height: 30px;
@@ -53,8 +77,6 @@
   border: 3px solid rgb(238, 238, 119);
    
 }
-
-/*Categories Page*/
 
 .leftContent{
   flex: 1;
@@ -69,22 +91,72 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
+}
+/*Categories Page*/
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.head button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  border: 3px solid rgb(238, 238, 119);
+  
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.userName {
+  margin-right: 40px;
+  font-size: x-large;
+  font-weight: bold;
+  font-family: calibri;
+  margin-right: 10px;
+
+}
+.userInfo > *:not(:last-child) {
+  margin-right: 20px;
+}
+.loginSuggestion{
+  font-size: large;
+  font-weight: bold;
+  font-family: calibri;
+
+}
+
+.body {
+  text-align: center;
 }
 
 .titleCategories{
   text-align: center;
+  font-family: calibri;
+  font-size: 40px;
 
 }
 
 .filterContainer{
   text-align: center;
+  font-family: calibri;
+  font-size: xx-large;
 }
 
 .categoriesContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   margin-top: 1rem;
+  background-color: rgb(238, 238, 119);
   
 }
 
@@ -93,8 +165,10 @@
   height: auto;
   border-radius: 10px;
   border: 3px solid rgb(238, 238, 119);
-  margin-left: 170px;
-  
+  margin-left: 80px;
+  padding: 20px;
+  margin-top: 20px;
+
 }
 
 .logoCategoriesPage{
@@ -105,7 +179,6 @@
 }
 
 /*Dashboard Page*/
-
 
 
 .tableColor {
