@@ -77,6 +77,7 @@ export default function LoginPage() {
             alt="Logo Money Minder"
             width={80}
             height={80}
+          
           />
 
           {loggedIn ? (
@@ -88,7 +89,7 @@ export default function LoginPage() {
 
           ) : (
 
-            <p className={styles.loginSuggestion}>Please login</p>
+            <p className={styles.loginSuggestion}>Welcome! Please login</p>
           )}
 
         </div>
@@ -122,28 +123,21 @@ export default function LoginPage() {
               loader={({ src }) => src}
               src="/image2/Image14 - money.png"
               alt="Photo Money Minder"
-              width={450}
-              height={450}
+              width={400}
+              height={400}
+              
             />
           </div>
         </div>
 
         <div className={styles.rightContent}>
           <div className={styles.loginContainer}>
-            
-            
 
-
-            <Card title="User Login" className={styles.card}>
-              <Image
-                className={styles.logoLoginPage}
-                loader={({ src }) => src}
-                src="/image/logomoneyminder.jpg"
-                alt="Logo Money Minder"
-                width={50}
-                height={50}
-
-              />
+            <Card className={styles.card}>
+            <h2 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '20px', fontFamily: 'calibri' }}>
+              Login Here
+            </h2>
+              
               <div className={styles.usernameLogin}>
                 <label>Email:<br></br></label>
                 <input type="text" value={email} onChange={handleEmailChange} />

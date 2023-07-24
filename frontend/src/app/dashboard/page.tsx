@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import { useContext, useState } from "react";
 import { MyContext } from "../../context/contextProvider";
 import Head from 'next/head'
+import { PieChart, Pie, Cell, Tooltip, Legend, Label } from 'recharts';
 
 const fetcher = (url: any) => fetch(url).then(res => res.json())
 
@@ -56,27 +57,36 @@ const expensesData = [
       })
     }
 
+    
+
     const columns = [
       {
         title: 'Color',
         dataIndex: 'color',
         key: 'color',
         render: (color: any) => <div className={styles.tableColor} style={{ backgroundColor: color }} />,
+        title: <span style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '18px', fontFamily: 'calibri' }}>Color</span>,
+       
       },
       {
-        title: 'Category',
+        title: 'Category' ,
         dataIndex: 'category',
         key: 'category',
+        title: <span style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '18px', fontFamily: 'calibri' }}>Category</span>,
+        
       },
       {
         title: 'Amount',
         dataIndex: 'amount',
         key: 'amount',
+        title: <span style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '18px', fontFamily: 'calibri' }}>Amount</span>,
       },
       {
         title: 'Note',
         dataIndex: 'note',
         key: 'note',
+        title: <span style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '18px', fontFamily: 'calibri' }}>Note</span>,
+      
       },
       
     ];
@@ -86,33 +96,48 @@ const expensesData = [
       key: expense.category,
     }));
 
+    const totalExpenses = expensesData.reduce((total, expense) => total + expense.amount, 0);
+
+    const donutChartData = expensesData.map((expense) => ({
+      name: expense.category,
+      value: (expense.amount / totalExpenses) * 100,
+      fill: expense.color,
+    }));
+    
+
   
     return (
      
-
       <div>
-       {loggedIn?
-       <div>
-        <p>Hello {userName}</p>
-        <button onClick={()=>updateLoggedIn(false)}>Logout</button>
-        </div>
-        :
-        <p>Please login</p>
-        }
-        <div>
-          <Image
-            className={styles.logoCategoriesPage}
-            loader={({ src }) => src}
-            src="/image/logomoneyminder.jpg"
-            alt="Logo Money Minder"
-            width={80}
-            height={80}
+
+        <div className={styles.head}>
+
+          <div className={styles.userInfo}>
+
+            <Image
+              className={styles.logoCategoriesPage}
+              loader={({ src }) => src}
+              src="/image/logomoneyminder.jpg"
+              alt="Logo Money Minder"
+              width={80}
+              height={80}
             />
-        </div>
-       
-        <h1>Dashboard</h1>
-        
-        <div className={styles.navigation}>
+
+            {loggedIn ? (
+
+              <div className={styles.userName}>
+                <p>Hello {userName}</p>
+                <button onClick={() => updateLoggedIn(false)}>Logout</button>
+              </div>
+
+            ) : (
+
+              <p className={styles.loginSuggestion}>Welcome! Please login</p>
+            )}
+
+          </div>
+
+          <div className={styles.navigation}>
           
             <Link href="/">
               <Button className={styles.navigationButton}>Home</Button>
@@ -126,12 +151,47 @@ const expensesData = [
             <Link href="/login">
               <Button className={styles.navigationButton}>Login</Button>
             </Link>
-     
-      </div>
+          </div>
+        </div>
 
+
+        <div className={styles.body}>
+          <h1 className={styles.titleDashboard}>Dashboard</h1>
+        </div>
+
+        <div className={styles.tableAndDonutContainer}>
+
+            <div className={styles.pieChartContainer}>
+              <PieChart width={400} height={400}>
+                <Pie
+                  dataKey="value"
+                  data={donutChartData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={50}
+                  outerRadius={90}
+                  fill="#8884d8"
+                  label={false}
+                >
+                  {donutChartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                  <Label value="Expenses" position="center" />
+                </Pie>
+                <Tooltip formatter={(value) => `${value.toFixed(2)}%`} />
+                <Legend layout="vertical" align="center" verticalAlign="bottom" />
+
+              </PieChart>
             
-          <Table dataSource={tableData} columns={columns} pagination={false} />
+            <div className={styles.tableStyle}>  
+              <Table dataSource={tableData} columns={columns} pagination={false} />
+            </div>
 
+          </div>
+
+        </div>
+
+          
       </div>
     );
   }

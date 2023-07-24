@@ -12,46 +12,64 @@
   
 }
 
+.loginSuggestion{
+  font-size: large;
+  font-weight: bold;
+  font-family: calibri;
+  font-style: italic;
+
+}
 /*Home Page*/
 
-.imageContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+.homeCard {
+  
+  justify-content: space-between;
+  border-radius: 10px;
+  border: 20px solid rgb(238, 238, 119);
+  max-width: 1000px;
+  margin: auto;
+
 }
 
 
 /*Login Page*/
 
+.LoginImage{
+  border-radius: 10px;
+}
 
 .titleLoginPage {
   font-size: 40px;
   font-family: calibri;
-  margin-left: 40px;
+  margin: auto;
 }
 .secondTitle{
-  font-size: 24px;
+  font-size: 20px;
   font-family: calibri;
-  margin-left: 20px;
+  margin-left: 5px;
 
 }
 
 .container {
   display: flex;
   justify-content: space-between;
+  border-radius: 10px;
+  border: 3px solid rgb(238, 238, 119);
+  max-width: 1000px;
+  margin: auto;
+ 
 }
 
 .card {
   width: 300px;
+  height: 350px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #e8e8e8;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 
 .logoLoginPage{
   border-radius: 5px;
@@ -71,7 +89,7 @@
 .loginButton {
   width: 60px;
   height: 30px;
-  margin: 20px;
+  margin-left: 80px;
   font-weight: bolder;
   border-radius: 5px;
   border: 3px solid rgb(238, 238, 119);
@@ -81,17 +99,17 @@
 .leftContent{
   flex: 1;
   padding: 2rem;
-  background-color: rgb(238, 238, 119);
+  text-align: center;
+  
 }
 
 .rightContent{
   flex: 1;
-  background-color: rgb(238, 238, 119);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+  background-color: rgb(238, 238, 119);
 }
 /*Categories Page*/
 
@@ -116,23 +134,22 @@
   margin-right: 20px;
 }
 
-.userName {
+.userName p {
   margin-right: 40px;
   font-size: x-large;
   font-weight: bold;
   font-family: calibri;
-  margin-right: 10px;
+  margin-top: 5px;
 
 }
+.userName button {
+  margin-top: 5px;
+}
+
 .userInfo > *:not(:last-child) {
   margin-right: 20px;
 }
-.loginSuggestion{
-  font-size: large;
-  font-weight: bold;
-  font-family: calibri;
 
-}
 
 .body {
   text-align: center;
@@ -157,7 +174,7 @@
   grid-gap: 1rem;
   margin-top: 1rem;
   background-color: rgb(238, 238, 119);
-  
+  border-radius: 10px;
 }
 
 .categoriesCardImage {
@@ -180,6 +197,12 @@
 
 /*Dashboard Page*/
 
+.titleDashboard{
+  text-align: center;
+  font-family: calibri;
+  font-size: 40px;
+
+}
 
 .tableColor {
   width: 20px;
@@ -188,8 +211,325 @@
   display: inline-block;
   margin-right: 8px;
 }
+.tableStyle{
+  max-width: 600px;
+  border-radius: 10px;
+  border: 3px solid rgb(238, 238, 119);
+  margin: 15px;
+}
 
+.pieChartContainer {
+  display: flex;
+  justify-content: center;
+ 
+}
 
+.tableAndDonutContainer{
 
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: auto;
+  
+}
 
+/*Home page responsive
+Mobile Devices (up to 767px) */
 
+@media (max-width: 767px) {
+  .head {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userName p {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .navigation {
+    margin-right: 0;
+    margin-top: 0;
+    justify-content: space-evenly;
+  }
+
+  .titleLoginPage {
+    font-size: 30px;
+  }
+
+  .secondTitle {
+    font-size: 16px;
+  }
+
+  .homeCard {
+    border: 10px solid rgb(238, 238, 119);
+    max-width: 90%;
+    margin: 20px auto;
+  }
+
+  .cardImage {
+    margin: 10px auto;
+  }
+}
+
+/*Tablets (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .titleLoginPage {
+    font-size: 35px;
+  }
+
+  .secondTitle {
+    font-size: 18px;
+  }
+}
+/*Laptops and Desktops (992px and above) */
+@media (min-width: 992px) {
+  .titleLoginPage {
+    font-size: 40px;
+  }
+
+  .secondTitle {
+    font-size: 20px;
+  }
+
+  .homeCard {
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .cardImage {
+    margin: 0;
+  }
+}
+
+/*Login page responsive
+Mobile Devices (up to 767px) */
+
+@media (max-width: 767px) {
+  .head {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userName p {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .navigation {
+    margin-right: 0;
+    margin-top: 0;
+    justify-content: space-evenly;
+  }
+
+  .titleLoginPage {
+    font-size: 30px;
+  }
+
+  .secondTitle {
+    font-size: 16px;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 90%;
+    height: auto;
+    max-width: 400px;
+    margin: 20px auto;
+  }
+
+  .rightContent {
+    padding: 1rem;
+  }
+
+  .leftContent {
+    padding: 1rem;
+  }
+
+  .logoContainer {
+    margin-bottom: 1rem;
+  }
+
+  .LoginImage {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .usernameLogin,
+  .passwordLogin {
+    margin-bottom: 10px;
+  }
+
+  .loginButton {
+    margin-left: 0;
+  }
+}
+/*Tablets (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .titleLoginPage {
+    font-size: 35px;
+  }
+
+  .secondTitle {
+    font-size: 18px;
+  }
+
+  .card {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+  }
+}
+/*Laptops and Desktops (992px and above) */
+@media (min-width: 992px) {
+  .titleLoginPage {
+    font-size: 40px;
+  }
+
+  .secondTitle {
+    font-size: 20px;
+  }
+
+  .container {
+    flex-direction: row;
+  }
+
+  .card {
+    width: 300px;
+    height: 350px;
+    margin: 0 auto;
+  }
+
+  .rightContent {
+    flex: 1;
+  }
+
+  .leftContent {
+    flex: 1;
+  }
+}
+/* Categories page responsive 
+Mobile Devices (up to 767px) */
+
+@media (max-width: 767px) {
+  .head {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userName p {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .navigation {
+    margin-right: 0;
+    margin-top: 0;
+    justify-content: space-evenly;
+  }
+
+  .titleCategories {
+    font-size: 30px;
+  }
+
+  .filterContainer {
+    font-size: 18px;
+  }
+
+  .categoriesContainer {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .categoriesCardImage {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+/*Tablets (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .titleCategories {
+    font-size: 35px;
+  }
+
+  .filterContainer {
+    font-size: 22px;
+  }
+
+  .categoriesContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .categoriesCardImage {
+    width: 100%;
+  }
+}
+/*Laptops and Desktops (992px and above) */
+@media (min-width: 992px) {
+  .titleCategories {
+    font-size: 40px;
+  }
+
+  .filterContainer {
+    font-size: 26px;
+  }
+
+  .categoriesContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .categoriesCardImage {
+    width: 100%;
+  }
+}
+
+/* Dashboard page responsive
+
+Mobile Devices (up to 767px) */
+
+@media (max-width: 767px) {
+  .titleDashboard {
+    font-size: 30px;
+  }
+
+  .tableStyle {
+    max-width: 100%;
+  }
+
+  .tableAndDonutContainer {
+    flex-direction: column;
+  }
+
+  .pieChartContainer {
+    margin-bottom: 20px;
+  }
+}
+
+/* Tablets (768px to 991px) */
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .titleDashboard {
+    font-size: 35px;
+  }
+
+  .tableStyle {
+    max-width: 80%;
+  }
+}
+
+/* Laptops and Desktops (992px and above) */
+
+@media (min-width: 992px) {
+  .titleDashboard {
+    font-size: 40px;
+  }
+
+  .tableStyle {
+    max-width: 600px;
+  }
+}
