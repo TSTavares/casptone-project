@@ -17,7 +17,9 @@ npm init
 5. `npm run dev`
 
 npm install antd
-do I need SWR?Is it just for APIS?npm install swr
+npm install swr
+npm install recharts
+
 
 Backend install:
 npm init
@@ -27,30 +29,31 @@ npm install nodemon
 npm install mongoose --save
 npm install axios
 npm install cors --save
-add in package.json "scripts": {"start": "nodemon"}
+add in package.json "scripts": {"start": "nodemon server.js"}
 change "main": "index.js", to "dbConnect.js"
 
 
 
+Capstone project: 
 
-Capstone project: Income and Expenses Tracker
+Money Minder 
+Income & Expenses Tracker
 
-Money Minder
+Figma: https://www.figma.com/file/Afc3nvQDXYD6QVxoZxmxJL/Capstone-Project?type=design&node-id=0-1&mode=design&t=DUZi0pLaPpwF9HTG-0
+
 
 An application that allows users to track their expenses, and categorize them. 
-Users can add, edit, and delete expenses, and set budgets.
+Users can add transactions on the Categories pages and visualize on the Dashboard page.
 
-Maybe consider https://www.akahu.nz/
+1 - Home Page: Giving a welcome to the app introducing the logo and name and what is the functionality of the application
 
-1 - Login: Users can sign up, log in, and manage their profile information. (if I have enough time)
+2 - Login Page: Users can login and logout. After login it goes automatically to Categories page.
 
-2 - Expense Input: A friendly interface with categories where users can input their expenses. Users can enter details such as expense amount (eg food, transport, rent, essential bills like electricity, water, and gas), additional notes, and new categories.
+3 - Categories Page: A friendly interface with categories where the user can enter their expenses. Users can enter expense amounts into specific categories and add notes.
 
-3 - Expense Management: Enable users to manage their expenses by allowing them to add, edit, and delete.
+4 - Dashboard Page: Users can visualize the information in a table and also in a round graph
 
-4 - Mobile Responsiveness: The app is responsive and accessible on multiple devices including desktops, tablets, and mobile phones. This allows users to track their expenses anywhere.
-
-5 - Page Learning Resources: Articles and videos with tips on how to have effective financial responsibility and how to save and how to make a better investment of your money.
+5 - Mobile Responsiveness: The app is responsive and accessible on multiple devices including desktops, tablets, and mobile phones. This allows users to track their expenses anywhere.
 
 
 
@@ -72,7 +75,7 @@ Maybe consider https://www.akahu.nz/
       D([Code])-->E([Presentation]);
       E([Presentation])-->E.1([Power point, well prepare]);
       E([Presentation])-->F([Successfully graduated]);
-      F([Successfully graduated])-->G([Job - employed]);
+    
       
 
 ```

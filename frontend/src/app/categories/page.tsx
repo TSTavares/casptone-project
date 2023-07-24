@@ -116,7 +116,7 @@ export default function CategoriesPage() {
 
           ) : (
 
-            <p className={styles.loginSuggestion}>Please login</p>
+            <p className={styles.loginSuggestion}>Welcome! Please login</p>
           )}
 
         </div>
