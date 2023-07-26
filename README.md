@@ -1,3 +1,25 @@
+Capstone project: 
+
+Money Minder 
+Income & Expenses Tracker
+
+Figma: https://www.figma.com/file/Afc3nvQDXYD6QVxoZxmxJL/Capstone-Project?type=design&node-id=0-1&mode=design&t=DUZi0pLaPpwF9HTG-0
+
+
+An application that allows users to track their expenses, and categorize them. 
+Users can select the filter, add transactions on the Categories pages and visualize on the Dashboard page.
+
+1 - Home Page: Giving a welcome to the app introducing the logo and name and what is the functionality of the application
+
+2 - Login Page: Users can login and logout. After login it goes automatically to Categories page.
+
+3 - Categories Page: A friendly interface with categories where the user can enter their expenses. Users can enter expense amounts into specific categories and add notes. It has a filter where the user can select one by one or all the categories.
+
+4 - Dashboard Page: Users can visualize the information in a table and also in a round graph.
+
+5 - Mobile Responsiveness: The app is responsive and accessible on multiple devices including desktops, tablets, and mobile phones. This allows users to track their expenses anywhere.
+
+Clone this application and install below:
 
 Frontend install:
 
@@ -33,27 +55,6 @@ add in package.json "scripts": {"start": "nodemon server.js"}
 change "main": "index.js", to "dbConnect.js"
 
 
-
-Capstone project: 
-
-Money Minder 
-Income & Expenses Tracker
-
-Figma: https://www.figma.com/file/Afc3nvQDXYD6QVxoZxmxJL/Capstone-Project?type=design&node-id=0-1&mode=design&t=DUZi0pLaPpwF9HTG-0
-
-
-An application that allows users to track their expenses, and categorize them. 
-Users can add transactions on the Categories pages and visualize on the Dashboard page.
-
-1 - Home Page: Giving a welcome to the app introducing the logo and name and what is the functionality of the application
-
-2 - Login Page: Users can login and logout. After login it goes automatically to Categories page.
-
-3 - Categories Page: A friendly interface with categories where the user can enter their expenses. Users can enter expense amounts into specific categories and add notes.
-
-4 - Dashboard Page: Users can visualize the information in a table and also in a round graph
-
-5 - Mobile Responsiveness: The app is responsive and accessible on multiple devices including desktops, tablets, and mobile phones. This allows users to track their expenses anywhere.
 
 
 
